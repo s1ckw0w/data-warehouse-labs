@@ -1,6 +1,6 @@
--- Файл 02_demo_data.sql
+-- Файл 02_demo_data_3NF_revised.sql
 -- Необязательный демонстрационный набор данных для проверки структуры.
--- Данные вымышлены. Выполнять после 01_schema.sql в БД academic_schedule_db.
+-- Данные вымышлены. Выполнять после 01_schema_3NF_revised.sql в БД academic_schedule_db.
 
 INSERT INTO faculties (faculty_code, faculty_name)
 VALUES ('FIT', 'Факультет информационных технологий');
