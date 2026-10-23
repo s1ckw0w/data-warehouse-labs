@@ -13,5 +13,3 @@
 - **SQL-скрипты:** [lab1/sql/](lab1/sql/).
 - **Диаграмма:** [lab1/model_diagram.png](lab1/model_diagram.png).
 - **Скриншоты фактического выполнения:** [lab1/screenshots/](lab1/screenshots/).
-
-Старая версия лабораторной № 1 в 3NF сохраняется в `lab1/legacy_3nf/`. Остальные лабораторные работы не изменяются.
