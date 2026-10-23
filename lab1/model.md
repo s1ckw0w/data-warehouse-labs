@@ -1,22 +1,12 @@
-# ER-модель лабораторной работы № 1
+# Data Vault: вариант № 6
 
-Вариант № 6: система составления учебного графика дисциплин факультета. Диаграмма ниже соответствует актуальной схеме PostgreSQL: занятие ссылается на дисциплину через `study_plan_disciplines`.
+## Hub (бизнес-ключи)
+`hub_faculty`, `hub_department`, `hub_program`, `hub_teacher`, `hub_discipline`, `hub_study_plan`, `hub_study_group`, `hub_semester`, `hub_classroom`, `hub_lesson_type`, `hub_schedule`.
 
-```mermaid
-erDiagram
-    FACULTIES ||--o{ DEPARTMENTS : contains
-    DEPARTMENTS ||--o{ EDUCATION_PROGRAMS : offers
-    DEPARTMENTS ||--o{ TEACHERS : employs
-    EDUCATION_PROGRAMS ||--o{ STUDY_PLANS : has
-    STUDY_PLANS ||--o{ STUDY_GROUPS : used_by
-    STUDY_PLANS ||--o{ STUDY_PLAN_DISCIPLINES : includes
-    DISCIPLINES ||--o{ STUDY_PLAN_DISCIPLINES : planned_in
-    ASSESSMENT_TYPES ||--o{ STUDY_PLAN_DISCIPLINES : assessed_by
-    ACADEMIC_YEARS ||--o{ SEMESTERS : consists_of
-    STUDY_GROUPS ||--o{ SCHEDULE_ENTRIES : attends
-    STUDY_PLAN_DISCIPLINES ||--o{ SCHEDULE_ENTRIES : scheduled_as
-    TEACHERS ||--o{ SCHEDULE_ENTRIES : teaches
-    SEMESTERS ||--o{ SCHEDULE_ENTRIES : occurs_in
-    CLASSROOMS ||--o{ SCHEDULE_ENTRIES : hosted_in
-    LESSON_TYPES ||--o{ SCHEDULE_ENTRIES : typed_as
-```
+## Link (связи)
+`lnk_department_faculty`, `lnk_program_department`, `lnk_teacher_department`, `lnk_plan_program`, `lnk_group_plan`, `lnk_plan_discipline`, `lnk_schedule_assignment`.
+
+## Satellite (описание и история)
+По одному satellite на каждый Hub плюс `sat_plan_discipline`. Атрибуты меняются добавлением новой строки с `load_dts`, а не перезаписью исторической записи. Текущее расписание раскрывает view `dv.v_schedule_current`.
+
+![Логическая схема](model_diagram.png)

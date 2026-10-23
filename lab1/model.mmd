@@ -1,16 +1,35 @@
-erDiagram
-    FACULTIES ||--o{ DEPARTMENTS : contains
-    DEPARTMENTS ||--o{ EDUCATION_PROGRAMS : offers
-    DEPARTMENTS ||--o{ TEACHERS : employs
-    EDUCATION_PROGRAMS ||--o{ STUDY_PLANS : has
-    STUDY_PLANS ||--o{ STUDY_GROUPS : used_by
-    STUDY_PLANS ||--o{ STUDY_PLAN_DISCIPLINES : includes
-    DISCIPLINES ||--o{ STUDY_PLAN_DISCIPLINES : planned_in
-    ASSESSMENT_TYPES ||--o{ STUDY_PLAN_DISCIPLINES : assessed_by
-    ACADEMIC_YEARS ||--o{ SEMESTERS : consists_of
-    STUDY_GROUPS ||--o{ SCHEDULE_ENTRIES : attends
-    STUDY_PLAN_DISCIPLINES ||--o{ SCHEDULE_ENTRIES : scheduled_as
-    TEACHERS ||--o{ SCHEDULE_ENTRIES : teaches
-    SEMESTERS ||--o{ SCHEDULE_ENTRIES : occurs_in
-    CLASSROOMS ||--o{ SCHEDULE_ENTRIES : hosted_in
-    LESSON_TYPES ||--o{ SCHEDULE_ENTRIES : typed_as
+flowchart LR
+classDef hub fill:#dbeafe,stroke:#3567a8,color:#132b45;
+classDef link fill:#d5f1e5,stroke:#378268,color:#173f31;
+classDef sat fill:#fff0dc,stroke:#b17c35,color:#513619;
+HP[hub_study_plan]:::hub
+HD[hub_discipline]:::hub
+HT[hub_teacher]:::hub
+HG[hub_study_group]:::hub
+HS[hub_schedule]:::hub
+HSE[hub_semester]:::hub
+HC[hub_classroom]:::hub
+HLT[hub_lesson_type]:::hub
+LPD[lnk_plan_discipline]:::link
+LAS[lnk_schedule_assignment]:::link
+SHP[sat_study_plan]:::sat
+SD[sat_discipline]:::sat
+ST[sat_teacher]:::sat
+SS[sat_schedule]:::sat
+SG[sat_study_group]:::sat
+SLPD[sat_plan_discipline]:::sat
+HP-->LPD
+HD-->LPD
+LPD-->SLPD
+HP-->SHP
+HD-->SD
+HT-->ST
+HG-->SG
+HS-->SS
+HS-->LAS
+HG-->LAS
+HD-->LAS
+HT-->LAS
+HSE-->LAS
+HC-->LAS
+HLT-->LAS
